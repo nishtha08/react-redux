@@ -1,14 +1,16 @@
-import * as Api from './apicalls';
-import axios from 'axios';
-
-//export const loadInProgress = 
-
 export const loadInProgress=(bool)=> {
     return {
         type: 'LOADING_HOTEL_LIST',
         bool
     };
   }
+
+export const priceLoading=(bool)=>{
+    return{
+        type:'LOADING_PRICE',
+        bool
+    }
+}
 
 export const FetchError=(bool)=>{
     return{
@@ -29,7 +31,7 @@ export const FetchError=(bool)=>{
       }
   }
 
-  export const priceListFetched=({priceData})=>{
+  export const priceListFetched=(priceData)=>{
       return{
           type:'PRICE_LIST_SUCCESS',
           priceData
@@ -41,22 +43,28 @@ export const FetchError=(bool)=>{
     }
   }
 
-  export const getProductData=()=>{
+  export const getProductData=({id})=>{
       return{
-          type:'FETCH_PRODUCT_DETAIL'
+          type:'FETCH_PRODUCT_DETAIL',
+          id
       }
   }
 
-  export const productDataSuccess=({productData})=>{
+  export const productDataSuccess=({productData,bool})=>{
       return{
           type:'PRODUCT_DATA_SUCCESS',
           productData
       }
   }
 
+  export const updateMinPrice=(data)=>{
+      return{
+          type:'UPDATE_MINPRICE',
+          data
+      }
+  }
 // export function fetchListData() {
 // //     return (dispatch) => {
-// //         debugger
 // //         axios.get("http://www.mocky.io/v2/5a7f24f02e00005200b568").
 // //         then((response) => { dispatch({type:"HOTEL_LIST_SUCCESS",payload:response.data }) 
 // //         })
