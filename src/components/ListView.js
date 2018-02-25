@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import { fetchHotelNameList, fetchPriceList, getProductData} from '../actions/action';
 import { connect } from 'react-redux';
-import image1 from '../utils/img1.jpg';
-// import {image2} from '../../public/assets/img2.jpg';
+import image1 from '../utils/img1.jpg'
 // import {image3} from './../utils/img3.jpg';
 import AppData from './Images';
 
@@ -29,7 +28,12 @@ class ListView extends Component {
         //updated hotels and prices from the store: 
         const { hotelList, priceList } = this.props;
 
-
+        //checks if all prices are null
+        const ObjSoldOut = (Object.keys(priceList).length!==0)?
+            priceList.filter((item,i)=> (!(Object.values(item.price).some((item,i)=> item)))) : '';
+         
+        
+        
         return (
             <div className="main">
                 <div className="container">
@@ -59,7 +63,7 @@ class ListView extends Component {
                                                 <div className="col-md-3 jc fcol">
                                                     <Price mouse={priceList} val={item.id} access={this.props} />
 
-                                                    <Button id={item.id} access={this.props}>Book</Button>
+                                                    { (Object.keys(priceList)!==0)? <Button id={item.id} block={ObjSoldOut} access={this.props}>Book</Button> :''}
 
                                                 </div>
                                             </div>)
@@ -98,14 +102,20 @@ const Price = ({ mouse, val, access }) => {
 }
 
 //since browser history wasn't working with react-router:
-const Button = withRouter(({ history, id, access }) => {
+const Button = withRouter(({ history, id, access,block }) => {
 
     return (<button className="bookbtn"
         type='button'
         onClick={() => {
+            //block for soldOut object:
+            if(block[0].id!==id){ 
             //fetch product data before routing;
-            access.getProductData(id);
+            access.getProductData(id)
             history.push(`/search/${id}`)
+            }
+            else {
+                // block route;
+            }
         }}>
         Book
         </button>)
