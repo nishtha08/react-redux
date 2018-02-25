@@ -13,8 +13,7 @@ const App =()=> {
           <BrowserRouter>
           <Switch>
           <Route exact path="/" component={ListView} />
-          <Route exact path="/search/:id" component={ListLayout}/> 
-          <Route component={NoMatch}/>
+          <Route exact path="/search/:id" component={ListLayout}/>
           </Switch>
           </BrowserRouter>
         </div>)

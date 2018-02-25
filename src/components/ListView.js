@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
-import { fetchHotelNameList, fetchPriceList, getProductData,updateMinPrice } from '../actions/action';
+import { fetchHotelNameList, fetchPriceList, getProductData} from '../actions/action';
 import { connect } from 'react-redux';
- import image1 from '../utils/img1.jpg';
+import image1 from '../utils/img1.jpg';
 // import {image2} from '../../public/assets/img2.jpg';
 // import {image3} from './../utils/img3.jpg';
 import AppData from './Images';
@@ -36,7 +36,7 @@ class ListView extends Component {
                     <div className="row" >
                         <div className="col-md-4">
                             <div className="item_container hr">
-                                Filters    
+                                Filters
                             </div>
                         </div>
                         <div className="col-md-8">
@@ -57,7 +57,7 @@ class ListView extends Component {
                                                     </div>
                                                 </div>
                                                 <div className="col-md-3 jc fcol">
-                                                    <Price mouse={priceList} val={item.id} access={this.props}/>
+                                                    <Price mouse={priceList} val={item.id} access={this.props} />
 
                                                     <Button id={item.id} access={this.props}>Book</Button>
 
@@ -74,7 +74,7 @@ class ListView extends Component {
 }
 
 
-    const Price = ({ mouse, val ,access}) => {
+const Price = ({ mouse, val, access }) => {
     let minPrice = '';
 
     //check if Price has received the object after the api's response:
@@ -91,15 +91,15 @@ class ListView extends Component {
             minPrice = "SOLD OUT"
         }
     }
-    //access.updateMinPrice(minPrice);
+    
     return <div className="price">
-                {(minPrice !== 'SOLD OUT') ? '₹'+minPrice : 'SOLD OUT'}
-            </div>
+        {(minPrice !== 'SOLD OUT') ? '₹' + minPrice : 'SOLD OUT'}
+    </div>
 }
 
 //since browser history wasn't working with react-router:
 const Button = withRouter(({ history, id, access }) => {
- 
+
     return (<button className="bookbtn"
         type='button'
         onClick={() => {
@@ -115,7 +115,7 @@ const ImageTile = ({ id }) => {
 
     let tileImage = Images.filter((item, i) => i === id)
     //let identity = tileImage[0].id;
-    return <img src={image1} className="img1"/>
+    return <img src={image1} alt={image1} className="img1" />
 }
 
 
@@ -123,7 +123,7 @@ const mapStateToProps = state => {
     return {
         hotelList: state.hotels,
         priceList: state.prices,
-        minPrice :state.minPrice
+        minPrice: state.minPrice
     }
 }
 
@@ -132,8 +132,7 @@ const mapDispatchToProps = dispatch => {
 
         fetchHotelList: () => { dispatch(fetchHotelNameList()) },
         fetchPriceList: () => { dispatch(fetchPriceList()) },
-        getProductData: (id) => { dispatch(getProductData(id)) },
-        updateMinPrice: (data)=>{dispatch(updateMinPrice(data))}
+        getProductData: (id) => { dispatch(getProductData(id)) }
     }
 }
 
