@@ -3,8 +3,6 @@ import { withRouter } from 'react-router-dom'
 import { fetchHotelNameList, fetchPriceList, getProductData} from '../actions/action';
 import { connect } from 'react-redux';
 import image1 from '../utils/img1.jpg'
-// import {image3} from './../utils/img3.jpg';
-import AppData from './Images';
 
 
 const Images = ['../utils/img1.jpg', '../utils/img2.jpg', '../utils/img3.jpg', '../utils/img4.jpg', '../utils/img5.jpg'];
