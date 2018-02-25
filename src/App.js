@@ -14,7 +14,6 @@ const App =()=> {
           <Switch>
           <Route exact path="/" component={ListView} />
           <Route exact path="/search/:id" component={ListLayout}/> 
-          <Route component={NoMatch}/>
           </Switch>
           </BrowserRouter>
         </div>)
