@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import { fetchHotelNameList, fetchPriceList, getProductData} from '../actions/action';
 import { connect } from 'react-redux';
-import image1 from '../utils/img1.jpg'
 
-
-const Images = ['../utils/img1.jpg', '../utils/img2.jpg', '../utils/img3.jpg', '../utils/img4.jpg', '../utils/img5.jpg'];
 
 class ListView extends Component {
     constructor(props) {
@@ -61,7 +58,8 @@ class ListView extends Component {
                                                 <div className="col-md-3 jc fcol">
                                                     <Price mouse={priceList} val={item.id} access={this.props} />
 
-                                                    { (Object.keys(priceList)!==0)? <Button id={item.id} block={ObjSoldOut} access={this.props}>Book</Button> :''}
+                                                    { (Object.keys(priceList)!==0)? 
+                                                    <Button id={item.id} block={ObjSoldOut} access={this.props}>Book</Button> :''}
 
                                                 </div>
                                             </div>)
@@ -119,12 +117,7 @@ const Button = withRouter(({ history, id, access,block }) => {
         </button>)
 })
 
-const ImageTile = ({ id }) => {
-
-    let tileImage = Images.filter((item, i) => i === id)
-    //let identity = tileImage[0].id;
-    return <img src={image1} alt={image1} className="img1" />
-}
+const ImageTile = ({id}) =>  <img src={require(`../utils/img${id}.jpg`)} className="img1"/>;
 
 
 const mapStateToProps = state => {
