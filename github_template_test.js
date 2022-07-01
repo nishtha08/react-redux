@@ -1,0 +1,1 @@
+constole.log(window);
